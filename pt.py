@@ -108,8 +108,15 @@ def waitForStart(span, starttime, starttz):
     print
     msg = 'Lights coming on at %s:%.2d%s %s' % (h,m,ampm,waitTime)
     print msg
+#
+# PUT YOUR CELL TEXING ADDRESS IN 1-LINE LOCAL FILE: "mycellnumber"
+#     - Example: 2125551212@vtext.com\n
+#
+    with open("./mycellnumber", "r") as f:
+        cellPhone = f.read().replace('\n','')
+
     username = getpass.getuser()
-    msg1 = "/root/bin/mymail.pl 2037335701@vtext.com %s@chf3.org '%s'" % (username, msg)
+    msg1 = "/root/bin/mymail.pl %s %s@chf3.org '%s'" % (cellPhone, username, msg)
 
     os.system(msg1)
     time.sleep(sleeptime)
